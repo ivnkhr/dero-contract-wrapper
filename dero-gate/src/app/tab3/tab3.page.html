@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">
+      Settings
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" fill="solid">
+        <ion-icon slot="start" name="save"></ion-icon>
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>Wallet / Interact</ion-card-title>
+            <ion-text color="success">Connected</ion-text>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-item color="dark">
+              <ion-label position="stacked">Wallet ip address (with port number)</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <br/>
+            <ion-button color="primary" fill="solid" expand="block">
+              <ion-icon slot="start" name="refresh-circle"></ion-icon>
+              Ping
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>Daemon / Verify</ion-card-title>
+            <ion-text color="danger">Disconnected</ion-text>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-item color="dark">
+              <ion-label position="stacked">Daemon ip address (with port number)</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <br/>
+            <ion-button color="primary" fill="solid" expand="block">
+              <ion-icon slot="start" name="refresh-circle"></ion-icon>
+              Ping
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

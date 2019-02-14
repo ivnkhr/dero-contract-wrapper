@@ -1,0 +1,72 @@
+:root {
+  --ion-color-primary: #009d7d;
+  --ion-color-primary-rgb: 0,157,125;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #008a6e;
+  --ion-color-primary-tint: #1aa78a;
+
+  --ion-color-secondary: #008ecc;
+  --ion-color-secondary-rgb: 0,142,204;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #007db4;
+  --ion-color-secondary-tint: #1a99d1;
+
+  --ion-color-tertiary: #42008a;
+  --ion-color-tertiary-rgb: 66,0,138;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255,255,255;
+  --ion-color-tertiary-shade: #3a0079;
+  --ion-color-tertiary-tint: #551a96;
+
+  --ion-color-success: #00aa15;
+  --ion-color-success-rgb: 0,170,21;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255,255,255;
+  --ion-color-success-shade: #009612;
+  --ion-color-success-tint: #1ab32c;
+
+  --ion-color-warning: #ffcc00;
+  --ion-color-warning-rgb: 255,204,0;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0,0,0;
+  --ion-color-warning-shade: #e0b400;
+  --ion-color-warning-tint: #ffd11a;
+
+  --ion-color-danger: #db1111;
+  --ion-color-danger-rgb: 219,17,17;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255,255,255;
+  --ion-color-danger-shade: #c10f0f;
+  --ion-color-danger-tint: #df2929;
+
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34,34,34;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255,255,255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  --ion-color-medium: #989aa2;
+  --ion-color-medium-rgb: 152,154,162;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255,255,255;
+  --ion-color-medium-shade: #86888f;
+  --ion-color-medium-tint: #a2a4ab;
+
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244,244,244;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0,0,0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+  
+  /* Set the background of the entire app */
+  --ion-background-color: #222;
+
+  /* Set the font family of the entire app */
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+  
+}
+
