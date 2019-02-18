@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-	  "electron-run": "concurrently -k \"ng serve\" \"electron ./electron-app\""
+	  "electron-run": "concurrently -k \"ng serve\" \"electron ./electron-app\"",
+    "electron-compile": "ng build && electron ./electron-app"
   },
   "private": true,
   "dependencies": {

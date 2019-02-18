@@ -17,8 +17,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
-      name: '__mydb',
-      driverOrder: ['indexeddb', 'localstorage', 'websql']
+      name: '__derogate',
+      driverOrder: ['localstorage', 'indexeddb', 'websql']
     }),
     AppRoutingModule
   ],

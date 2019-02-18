@@ -1,5 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+path = require('path');
+url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -15,8 +17,18 @@ function createWindow () {
     }
   })
   
+  // Change loadUrl to load index.html
+  // using url and path package 
+  // to format the file url
+  mainWindow.loadURL(url.format({
+    //__dirname is the current working dir
+    pathname: path.join(__dirname, '../www', 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
+  
   //Development --serve version
-  mainWindow.loadURL("http://localhost:4200");
+  //mainWindow.loadURL("http://localhost:4200");
   
   // and load the index.html of the app.
   //mainWindow.loadFile('/../www/index.html');
