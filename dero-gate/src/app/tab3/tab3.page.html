@@ -4,7 +4,7 @@
       Settings
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button color="primary" fill="solid">
+      <ion-button color="primary" fill="solid" (click)="saveEndpoints()">
         <ion-icon slot="start" name="save"></ion-icon>
         Save
       </ion-button>
@@ -20,16 +20,16 @@
         <ion-card color="light">
           <ion-card-header>
             <ion-card-title>Wallet / Interact</ion-card-title>
-            <ion-text color="success">Connected</ion-text>
+            <ion-text color="{{AgentStatusColors[rootApp.wallet_status]}}">{{AgentStatus[rootApp.wallet_status]}}</ion-text>
           </ion-card-header>
         
           <ion-card-content>
             <ion-item color="dark">
-              <ion-label position="stacked">Wallet ip address (with port number)</ion-label>
-              <ion-input></ion-input>
+              <ion-label position="stacked">Default <b>wallet</b> ip address (with port number)</ion-label>
+              <ion-input [(ngModel)]="rootApp.wallet"></ion-input>
             </ion-item>
             <br/>
-            <ion-button color="primary" fill="solid" expand="block">
+            <ion-button color="primary" fill="solid" expand="block" (click)="rootApp.ping_wallet()">
               <ion-icon slot="start" name="refresh-circle"></ion-icon>
               Ping
             </ion-button>
@@ -40,19 +40,23 @@
         <ion-card color="light">
           <ion-card-header>
             <ion-card-title>Daemon / Verify</ion-card-title>
-            <ion-text color="danger">Disconnected</ion-text>
+            <ion-text color="{{AgentStatusColors[rootApp.daemon_status]}}">{{AgentStatus[rootApp.daemon_status]}}</ion-text>
           </ion-card-header>
         
           <ion-card-content>
             <ion-item color="dark">
-              <ion-label position="stacked">Daemon ip address (with port number)</ion-label>
-              <ion-input></ion-input>
+              <ion-label position="stacked">Default <b>daemon</b> ip address (with port number)</ion-label>
+              <ion-input [(ngModel)]="rootApp.daemon"></ion-input>
             </ion-item>
             <br/>
-            <ion-button color="primary" fill="solid" expand="block">
+            <ion-button color="primary" fill="solid" expand="block" (click)="rootApp.ping_daemon()">
               <ion-icon slot="start" name="refresh-circle"></ion-icon>
               Ping
             </ion-button>
+            <br/>
+            <div *ngIf="rootApp.daemon_response">
+              <div *ngFor="let item of rootApp.daemon_response.result | keyvalue"><b>{{item.key}}</b>: {{item.value}}</div>
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>

@@ -1,9 +1,106 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab Two
+    <ion-title color="light">
+      Interact
     </ion-title>
+    <ion-buttons slot="end">
+
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content color="dark">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>Contract Address</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-item color="dark">
+              <ion-label position="stacked">Enter <b>smart contract (SCID)</b> you want to work with</ion-label>
+              <ion-input [(ngModel)]="rootApp.contract"></ion-input>
+            </ion-item>
+            <br/>
+            <ion-button color="primary" fill="solid" expand="block" (click)="rootApp.fetch_contract([])">
+              <ion-icon name="code-download"></ion-icon>
+              Fetch
+            </ion-button>
+
+            
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>Availiable Methods</ion-card-title>
+            Wallet: {{rootApp.wallet}} <ion-text color="{{AgentStatusColors[rootApp.wallet_status]}}">{{AgentStatus[rootApp.wallet_status]}}</ion-text><br/>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <div *ngIf="rootApp.contract_response">
+              <ion-button color="primary" fill="solid" expand="block" *ngFor="let item of rootApp.contract_response.txs[0].sc.F | keyvalue" (click)="rootApp.active_method=item">{{item.value.N}}</ion-button>
+            </div>
+            <div *ngIf="rootApp.active_method">
+              <br/>
+              
+              <ion-item color="dark" *ngFor="let item of rootApp.active_method.value.P; let i = index; trackBy: trackByIndex;">
+                <ion-label position="stacked">{{item['N']}} ({{(item['T']===2)?'String':'uInt64'}})</ion-label>
+                <ion-input></ion-input>
+              </ion-item>
+              
+              <ion-button color="primary" fill="solid" expand="block">
+                <ion-icon slot="start" name="refresh-circle"></ion-icon>
+                Execute
+              </ion-button>
+            </div>
+            <br/>
+            <div *ngIf="rootApp.wallet_response">
+              <b>TXID</b>: {{(item.value)?item.value:'Insufficient balance'}}
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>
+              Read From Blockchain
+              
+            </ion-card-title>
+            Daemon: {{rootApp.daemon}} <ion-text color="{{AgentStatusColors[rootApp.daemon_status]}}">{{AgentStatus[rootApp.daemon_status]}}</ion-text><br/>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-item color="dark" *ngFor="let item of rootApp.variables; let i = index; trackBy: trackByIndex;">
+              <ion-label position="stacked">Enter variable you want to read</ion-label>
+              <ion-input [(ngModel)]="item" (ionBlur)="rootApp.variables[i]=item"></ion-input>
+            </ion-item>
+            <br/>
+            <ion-button color="primary" fill="solid" expand="block" (click)="rootApp.variables.push('')">
+              <ion-icon slot="start" name="add"></ion-icon>
+              Add
+            </ion-button>
+            <br/>
+            <ion-button color="primary" fill="solid" expand="block" (click)="rootApp.fetch_contract(rootApp.variables)">
+              <ion-icon slot="start" name="code-download"></ion-icon>
+              Read
+            </ion-button>
+            <br/>
+            <div *ngIf="rootApp.contract_response">
+              <div *ngFor="let item of rootApp.contract_response.txs[0].sc_keys | keyvalue"><b>{{item.key}}</b>: {{(item.value)?item.value:'Not found'}}</div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
