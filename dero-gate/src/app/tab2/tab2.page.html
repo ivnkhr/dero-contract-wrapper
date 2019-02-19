@@ -29,7 +29,10 @@
               <ion-icon name="code-download"></ion-icon>
               Fetch
             </ion-button>
-
+            <ion-button *ngIf="rootApp.contract_response" color="primary" fill="solid" expand="block" (click)="rootApp.view_contract()">
+              <ion-icon name="code"></ion-icon>
+              View Contract Source
+            </ion-button>
             
             
           </ion-card-content>
@@ -52,18 +55,18 @@
               <br/>
               
               <ion-item color="dark" *ngFor="let item of rootApp.active_method.value.P; let i = index; trackBy: trackByIndex;">
-                <ion-label position="stacked">{{item['N']}} ({{(item['T']===2)?'String':'uInt64'}})</ion-label>
-                <ion-input></ion-input>
+                <ion-label position="stacked">{{item['N']}} ({{(item['T']===2)?'String':'uInt64'}}) <b *ngIf="item['N']=='value'">{{rootApp.active_method.value.P[i]['V']/1000000000000}} in DERO</b></ion-label>
+                <ion-input [(ngModel)]="rootApp.active_method.value.P[i]['V']"></ion-input>
               </ion-item>
               
-              <ion-button color="primary" fill="solid" expand="block">
-                <ion-icon slot="start" name="refresh-circle"></ion-icon>
+              <ion-button color="primary" fill="solid" expand="block" (click)="rootApp.execute_command()">
+                <ion-icon slot="start" name="code-working"></ion-icon>
                 Execute
               </ion-button>
             </div>
             <br/>
-            <div *ngIf="rootApp.wallet_response">
-              <b>TXID</b>: {{(item.value)?item.value:'Insufficient balance'}}
+            <div *ngIf="rootApp.wallet_execution_response">
+              <b>TXID</b>: {{(rootApp.wallet_execution_response.result.tx_hash_list[0])?rootApp.wallet_execution_response.result.tx_hash_list[0]:'Insufficient unlocked balance'}}
             </div>
           </ion-card-content>
         </ion-card>
@@ -79,7 +82,7 @@
           </ion-card-header>
         
           <ion-card-content>
-            <ion-item color="dark" *ngFor="let item of rootApp.variables; let i = index; trackBy: trackByIndex;">
+            <ion-item color="dark" *ngFor="let item of rootApp.variables; let i = index;">
               <ion-label position="stacked">Enter variable you want to read</ion-label>
               <ion-input [(ngModel)]="item" (ionBlur)="rootApp.variables[i]=item"></ion-input>
             </ion-item>

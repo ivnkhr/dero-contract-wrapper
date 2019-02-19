@@ -33,6 +33,10 @@
               <ion-icon slot="start" name="refresh-circle"></ion-icon>
               Ping
             </ion-button>
+            <br/>
+            <div *ngIf="rootApp.wallet_response">
+              <div *ngFor="let item of rootApp.wallet_response.result | keyvalue"><b>{{item.key}}</b>: {{item.value}}</div>
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>

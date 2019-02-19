@@ -1,17 +1,33 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu, MenuItem} = require('electron')
 path = require('path');
 url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let explorerWindow
+
+function openBlockExplorer(txhash) {
+  explorerWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: false
+    }
+  });
+  let tx_add = '';
+  if(txhash){
+    tx_add = 'tx/'+txhash;
+  }
+  explorerWindow.loadURL('http://pool.dero.io:8080/'+tx_add);
+}
 
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     webPreferences: {
       nodeIntegration: true
     }
@@ -22,10 +38,26 @@ function createWindow () {
   // to format the file url
   mainWindow.loadURL(url.format({
     //__dirname is the current working dir
-    pathname: path.join(__dirname, '../www', 'index.html'),
+    pathname: path.join(__dirname, './www', 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
+  
+  var menu = Menu.getApplicationMenu();
+  menu.append(new MenuItem ({
+     label: 'Relaunch',
+     click() {
+       app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+       app.exit(0)
+     }
+  }))
+  menu.append(new MenuItem ({
+     label: 'Blockexplorer (testnet)',
+     click() {
+       openBlockExplorer()
+     }
+  }))
+  Menu.setApplicationMenu(menu); 
   
   //Development --serve version
   //mainWindow.loadURL("http://localhost:4200");
@@ -43,6 +75,9 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+  
+  //openBlockExplorer()
+  
 }
 
 // This method will be called when Electron has finished

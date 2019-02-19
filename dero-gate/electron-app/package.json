@@ -2,6 +2,7 @@
   "name": "electron-quick-start",
   "version": "1.0.0",
   "description": "A minimal Electron application",
+  "productName": "Dero Gate",
   "main": "main.js",
   "scripts": {
     "start": "electron ."

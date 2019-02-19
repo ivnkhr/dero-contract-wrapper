@@ -11,9 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ModalExample } from '../modal/modal.page';
+
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, ModalExample],
+  entryComponents: [ModalExample],
   imports: [
     BrowserModule,
     HttpClientModule,
