@@ -22,6 +22,7 @@ coverage/
 www/
 node_modules/
 tmp/
+raw_builds/
 temp/
 platforms/
 plugins/
