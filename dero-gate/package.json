@@ -13,7 +13,7 @@
     "electron-serve": "ng build --watch --prod --output-path=./electron-app/www",
     "electron-run": "concurrently -k \"ng build --watch --prod --output-path=./electron-app/www\" \"electron ./electron-app\"",
     "electron-compile": "ng build --output-path=./electron-app/www --prod && electron ./electron-app",
-    "electron-pack": "ng build --output-path=./electron-app/www --prod && electron-packager ./electron-app --all --out=./raw_builds --overwrite"
+    "electron-pack": "ng build --output-path=./electron-app/www --prod && electron-packager ./electron-app --arch ia32,x64 --platform win32,linux --out=./raw_builds --overwrite"
   },
   "private": true,
   "dependencies": {

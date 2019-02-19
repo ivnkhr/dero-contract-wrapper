@@ -2,6 +2,8 @@
 const {app, BrowserWindow, Menu, MenuItem} = require('electron')
 path = require('path');
 url = require('url');
+// Check if we are in development
+var isDev = require('electron-is-dev');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -43,20 +45,60 @@ function createWindow () {
     slashes: true
   }));
   
-  var menu = Menu.getApplicationMenu();
-  menu.append(new MenuItem ({
-     label: 'Relaunch',
-     click() {
-       app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
-       app.exit(0)
-     }
-  }))
-  menu.append(new MenuItem ({
-     label: 'Blockexplorer (testnet)',
-     click() {
-       openBlockExplorer()
-     }
-  }))
+  if(isDev){
+    var menu = Menu.getApplicationMenu();
+    menu.append(new MenuItem ({
+       label: 'Relaunch',
+       click() {
+         app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+         app.exit(0)
+       }
+    }))
+    menu.append(new MenuItem ({
+       label: 'Blockexplorer (testnet)',
+       click() {
+         openBlockExplorer()
+       }
+    }))
+    
+  }else{
+    // In production
+    // construct menu from scratch
+    // mainWindow.webContents.openDevTools()
+    var template = [
+            {
+                label: "Application",
+                submenu: [
+                    {
+                        label: "Debug Console",
+                        click: function () { mainWindow.webContents.openDevTools() }
+                    },
+                    {
+                        label: "Exit",
+                        click: function () { app.exit(0) }
+                    }
+                ]
+            },
+            {
+                label: "Utilities",
+                submenu: [
+                    {
+                        label: "Blockexplorer (testnet)",
+                        click: function () { openBlockExplorer() }
+                    },
+                    {
+                        label: "Relaunch",
+                        click: function () { 
+                          app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+                          app.exit(0)
+                        }
+                    }
+                ]
+            }
+        ];        
+    // build menu from template
+    var menu = Menu.buildFromTemplate(template);  
+  }
   Menu.setApplicationMenu(menu); 
   
   //Development --serve version
